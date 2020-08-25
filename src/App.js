@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled, { ThemeProvider } from 'styled-components';
+
+import GlobalStyles from './styles/globalStyles';
+import Theme from './styles/theme';
+import Board from './pages/Board';
+
+const Wrapper = styled.div`
+  margin: 0 auto;
+  max-width: ${(props) => props.theme.maxWidth};
+  width: 100%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid ${(props) => props.theme.blackColor};
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={Theme}>
+      <GlobalStyles />
+      <Wrapper>
+        <Board />
+      </Wrapper>
+    </ThemeProvider>
   );
 }
 
